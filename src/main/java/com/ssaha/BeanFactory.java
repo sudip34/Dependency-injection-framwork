@@ -87,24 +87,24 @@ public enum BeanFactory {
     }
 
 
-//
-//    // creating the method to return the single Instance with reflection
-//    private <T> T instantiateBeanClass(Class<T> beanClass, Object[] arguments)
-//            throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-//        // crating the array of the parameter types
-//        Class<?>[] argumentClasses = Arrays.stream(arguments) //crating the stream of arguments/parameters
-//                .map(Object::getClass) // map to its class with Object.getClass()
-//                .toArray(Class<?>[]::new); // creating a Array to collect all the Classes
-//
-//        // Now we will Locate the corresponding constructor for the classes
-//        Constructor<T> beanConstructor = beanClass.getConstructor(argumentClasses);
-//
-//        // create new instance using the beanConstructor
-//        T newCreatedBean = beanConstructor.newInstance(arguments);
-//
-//        // return the bean
-//        return newCreatedBean;
-//    }
+
+    // creating the method to return the single Instance with reflection
+    private <T> T instantiateBeanClassWithFieldInstantiation(Class<T> beanClass, Object[] arguments)
+            throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        // crating the array of the parameter types
+        Class<?>[] argumentClasses = Arrays.stream(arguments) //crating the stream of arguments/parameters
+                .map(Object::getClass) // map to its class with Object.getClass()
+                .toArray(Class<?>[]::new); // creating a Array to collect all the Classes
+
+        // Now we will Locate the corresponding constructor for the classes
+        Constructor<T> beanConstructor = beanClass.getConstructor(argumentClasses);
+
+        // create new instance using the beanConstructor
+        T newCreatedBean = beanConstructor.newInstance(arguments);
+
+        // return the bean
+        return newCreatedBean;
+    }
 
 
 
